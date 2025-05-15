@@ -1,0 +1,12 @@
+ [
+  {
+    "riderId": "R001",
+    "name": "Elvin Romano",
+    "status": "Active"
+  },
+  {
+    "riderId": "R002",
+    "name": "Melvin Cruz",
+    "status": "Active"
+  }
+]

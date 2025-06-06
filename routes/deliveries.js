@@ -1,25 +1,25 @@
-const express = require("express");
-const fs = require("fs");
-const path = require("path");
+import express from 'express';
+import fs from 'fs';
+import path from 'path';
 
 const router = express.Router();
+const deliveriesFile = path.join(process.cwd(), 'data', 'deliveries.json');
 
-router.get("/", (req, res) => {
-  const filePath = path.join(__dirname, "../data", "deliveries.json");
-  fs.readFile(filePath, "utf8", (err, data) => {
-    if (err) return res.status(500).json({ error: "Failed to load deliveries" });
-
-    try {
-      const parsed = JSON.parse(data);
-      res.json(parsed);
-    } catch (e) {
-      console.error("JSON parse error:", e.message);
-      res.status(500).json({ error: "Invalid JSON format in deliveries.json" });
-    }
-  });
+// ✅ GET all deliveries
+router.get('/', (req, res) => {
+  try {
+    const data = fs.readFileSync(deliveriesFile, 'utf-8');
+    const deliveries = JSON.parse(data);
+    res.json(deliveries);
+  } catch (err) {
+    console.error('Failed to read deliveries:', err);
+    res.status(500).json({ error: 'Failed to read deliveries' });
+  }
 });
 
-module.exports = router;
+export default router;
+
+
 
 
 

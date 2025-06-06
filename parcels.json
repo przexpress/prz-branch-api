@@ -1,0 +1,13 @@
+ [
+  {
+    "barcode": "PRZ1234567890",
+    "truckingNo": "TRK-20250605-7890",
+    "sender": "Juan Dela Cruz",
+    "consignee": "Maria Santos",
+    "address": "Quezon City",
+    "region": "Metro Manila",
+    "weight": "1 kg",
+    "codAmount": "₱100",
+    "status": "Pending"
+  }
+]

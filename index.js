@@ -1,23 +1,23 @@
-const express = require("express");
-const cors = require("cors");
+import express from 'express';
+import cors from 'cors';
+import deliveriesRoutes from './routes/deliveries.js';
+import parcelRoutes from './routes/parcels.js'; // ✅ make sure this line is included
 
 const app = express();
-const port = 3001;
+const PORT = process.env.PORT || 3010;
 
 app.use(cors());
 app.use(express.json());
 
-// Import routes
-const deliveriesRoutes = require("./routes/deliveries");
-const ridersRoutes = require("./routes/riders");
+// ✅ Use routes
+app.use('/api/parcels', parcelRoutes); // ✅ connects /api/parcels
+app.use('/api/deliveries', deliveriesRoutes);
 
-// Use routes
-app.use("/deliveries", deliveriesRoutes);
-app.use("/riders", ridersRoutes);
-
-app.listen(port, () => {
-  console.log(`✅ PRZ API server running on http://localhost:${port}`);
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
+
+
 
 
 

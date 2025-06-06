@@ -1,0 +1,16 @@
+[
+  {
+    "barcode": "PRZ1234567890",
+    "sender": "Juan Dela Cruz",
+    "consignee": "Maria Santos",
+    "address": "Quezon City",
+    "weight": "1",
+    "region": "Metro Manila",
+    "codAmount": "₱200",
+    "location": "Santa Rosa",
+    "shippingRate": 80,
+    "codFee": 15,
+    "truckingNumber": "TRK-20250603-4321",
+    "status": "Delivered"
+  }
+]

@@ -2,6 +2,7 @@
   {
     "orderId": "001",
     "recipient": "Juan Dela Cruz",
+    "address": "Manila",
     "status": "Delivered",
     "riderId": "R001",
     "logs": [
@@ -9,11 +10,13 @@
         "status": "Delivered",
         "timestamp": "2025-05-10T10:00:00Z"
       }
-    ]
+    ],
+    "lastUpdate": "2025-05-10T10:00:00Z"
   },
   {
     "orderId": "002",
     "recipient": "Maria Santos",
+    "address": "Laguna",
     "status": "For Pick Up",
     "riderId": "R002",
     "logs": [
@@ -21,8 +24,19 @@
         "status": "For Pick Up",
         "timestamp": "2025-05-10T11:00:00Z"
       }
-    ]
+    ],
+    "lastUpdate": "2025-05-10T11:00:00Z"
+  },
+  {
+    "orderId": "PRZ1234567890",
+    "recipient": "Maria Santos",
+    "address": "Quezon City",
+    "status": "Delivered",
+    "riderId": "RIDER001",
+    "logs": ["Created", "Out for Delivery", "Delivered"],
+    "lastUpdate": "2025-06-06T08:00:00Z"
   }
 ]
+
 
 

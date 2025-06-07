@@ -1,43 +1,27 @@
 [
   {
-    "orderId": "001",
-    "recipient": "Juan Dela Cruz",
-    "address": "Manila",
-    "status": "Delivered",
-    "riderId": "R001",
-    "logs": [
-      {
-        "status": "Delivered",
-        "timestamp": "2025-05-10T10:00:00Z"
-      }
-    ],
-    "lastUpdate": "2025-05-10T10:00:00Z"
-  },
-  {
-    "orderId": "002",
-    "recipient": "Maria Santos",
-    "address": "Laguna",
-    "status": "For Pick Up",
-    "riderId": "R002",
-    "logs": [
-      {
-        "status": "For Pick Up",
-        "timestamp": "2025-05-10T11:00:00Z"
-      }
-    ],
-    "lastUpdate": "2025-05-10T11:00:00Z"
-  },
-  {
+    "barcode": "PRZ1234567890",
     "orderId": "PRZ1234567890",
-    "recipient": "Maria Santos",
+    "sender": "Juan Dela Cruz",
+    "consignee": "Maria Santos",
     "address": "Quezon City",
+    "region": "Metro Manila",
+    "weight": "1",
+    "codAmount": "₱200",
+    "location": "Santa Rosa",
+    "shippingRate": 80,
+    "codFee": 15,
+    "truckingNumber": "TRK-20250603-4321",
     "status": "Delivered",
     "riderId": "RIDER001",
-    "logs": ["Created", "Out for Delivery", "Delivered"],
-    "lastUpdate": "2025-06-06T08:00:00Z"
+    "logs": [
+      "Parcel Created",
+      "Checked In at Santa Rosa",
+      "Out for Delivery",
+      "Delivered"
+    ],
+    "lastUpdate": "2025-06-07 14:30"
   }
 ]
-
-
 
 

@@ -1,17 +1,17 @@
- import express from 'express';
+import express from 'express';
 const router = express.Router();
 
 const dummyUsers = [
   {
     username: 'branchadmin',
     password: '123456',
-    name: 'Santa Rosa Branch',
+    name: 'Santa Rosa Branch'
   },
   {
     username: 'batangas01',
     password: '123456',
-    name: 'Batangas Branch',
-  },
+    name: 'Batangas Branch'
+  }
 ];
 
 router.post('/login', (req, res) => {
@@ -22,9 +22,7 @@ router.post('/login', (req, res) => {
   );
 
   if (!user) {
-    return res
-      .status(401)
-      .json({ success: false, message: 'Invalid username or password' });
+    return res.status(401).json({ success: false, message: 'Invalid username or password' });
   }
 
   res.json({
@@ -32,9 +30,10 @@ router.post('/login', (req, res) => {
     message: 'Login successful',
     user: {
       username: user.username,
-      name: user.name,
-    },
+      name: user.name
+    }
   });
 });
 
 export default router;
+

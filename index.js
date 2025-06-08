@@ -1,22 +1,21 @@
- // File: index.js (Entry Point for Express Server)
-import express from "express";
-import cors from "cors";
+ import express from 'express';
+import cors from 'cors'; // ✅ ADD THIS
 
-import branchAuthRoutes from "./routes/branchAuth.js"; // ✅ Route Import
+import branchAuthRoutes from './routes/branchAuth.js';
 
 const app = express();
-const PORT = process.env.PORT || 3010;
+const PORT = process.env.PORT || 10000;
 
-app.use(cors());
+app.use(cors()); // ✅ ALLOW CORS FOR FRONTEND
 app.use(express.json());
 
-// ✅ Register the /api/branch endpoint
-app.use("/api/branch", branchAuthRoutes);
+app.use('/api/branch', branchAuthRoutes);
 
-app.get("/", (req, res) => {
-  res.send("PRZ API is running.");
+// Optional home route
+app.get('/', (req, res) => {
+  res.send('PRZ API is running.');
 });
 
 app.listen(PORT, () => {
-  console.log(`✅ Server is running on port ${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });

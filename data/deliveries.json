@@ -1,27 +1,25 @@
-[
-  {
-    "barcode": "PRZ1234567890",
-    "orderId": "PRZ1234567890",
-    "sender": "Juan Dela Cruz",
-    "consignee": "Maria Santos",
-    "address": "Quezon City",
-    "region": "Metro Manila",
-    "weight": "1",
-    "codAmount": "₱200",
-    "location": "Santa Rosa",
-    "shippingRate": 80,
-    "codFee": 15,
-    "truckingNumber": "TRK-20250603-4321",
-    "status": "Delivered",
-    "riderId": "RIDER001",
-    "logs": [
-      "Parcel Created",
-      "Checked In at Santa Rosa",
-      "Out for Delivery",
-      "Delivered"
-    ],
-    "lastUpdate": "2025-06-07 14:30"
-  }
-]
+{
+  "barcode": "PRZ1234567890",
+  "recipient": "Maria Santos",
+  "address": "Quezon City",
+  "status": "Delivered",
+  "riderId": "RIDER001",
+  "logs": [
+    {
+      "status": "Created",
+      "timestamp": "2025-06-06T08:00:00Z"
+    },
+    {
+      "status": "Out for Delivery",
+      "timestamp": "2025-06-06T09:00:00Z"
+    },
+    {
+      "status": "Delivered",
+      "timestamp": "2025-06-06T10:00:00Z"
+    }
+  ],
+  "lastUpdate": "2025-06-06T10:00:00Z"
+}
+
 
 

@@ -1,6 +1,8 @@
-import express from 'express';
-import cors from 'cors';
-import parcelRoutes from './routes/parcels.js'; // ✅ make sure file exists and path is correct
+ // File: index.js (Entry Point for Express Server)
+import express from "express";
+import cors from "cors";
+
+import branchAuthRoutes from "./routes/branchAuth.js"; // ✅ Route Import
 
 const app = express();
 const PORT = process.env.PORT || 3010;
@@ -8,20 +10,13 @@ const PORT = process.env.PORT || 3010;
 app.use(cors());
 app.use(express.json());
 
-// ✅ All API routes mounted under /api
-app.use('/api', parcelRoutes);
+// ✅ Register the /api/branch endpoint
+app.use("/api/branch", branchAuthRoutes);
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+app.get("/", (req, res) => {
+  res.send("PRZ API is running.");
 });
 
-
-
-
-
-
-
-
-
-
-
+app.listen(PORT, () => {
+  console.log(`✅ Server is running on port ${PORT}`);
+});

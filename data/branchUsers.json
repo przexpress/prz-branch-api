@@ -1,0 +1,14 @@
+ [
+  {
+    "id": 1,
+    "username": "branchadmin",
+    "password": "admin123",
+    "branch": "Santa Rosa"
+  },
+  {
+    "id": 2,
+    "username": "branchcavite",
+    "password": "cavite123",
+    "branch": "Cavite"
+  }
+]

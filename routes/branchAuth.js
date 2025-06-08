@@ -1,7 +1,6 @@
  import express from 'express';
 const router = express.Router();
 
-// Dummy login credentials
 const dummyUsers = [
   {
     username: 'branchadmin',

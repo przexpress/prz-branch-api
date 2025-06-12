@@ -1,24 +1,16 @@
- // index.js
-import express from 'express';
+ import express from 'express';
 import cors from 'cors';
-import branchRoutes from './routes/branchAuth.js';
+import branchAuthRoutes from './routes/branchAuth.js';
 
 const app = express();
-const PORT = process.env.PORT || 10000;
+const PORT = process.env.PORT || 3001;
 
-// Middleware
-app.use(cors()); // Enable CORS
-app.use(express.json()); // Parse JSON
+app.use(cors());
+app.use(express.json());
 
-// Mount route
-app.use('/api/branch', branchRoutes);
+// ✅ Register branch login route
+app.use('/api/branch', branchAuthRoutes);
 
-// Root endpoint
-app.get('/', (req, res) => {
-  res.send('PRZ API is running.');
-});
-
-// Start server
 app.listen(PORT, () => {
-  console.log(`✅ Server running on port ${PORT}`);
+  console.log(`🚀 Server running on port ${PORT}`);
 });

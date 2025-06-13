@@ -1,4 +1,4 @@
- import express from "express";
+import express from "express";
 import fs from "fs";
 import path from "path";
 
@@ -7,6 +7,7 @@ const router = express.Router();
 router.post("/login", (req, res) => {
   const { username, password } = req.body;
 
+  // ✅ Correct path to branchUsers.json
   const filePath = path.join(process.cwd(), "data", "branchUsers.json");
 
   fs.readFile(filePath, "utf8", (err, data) => {
@@ -26,3 +27,4 @@ router.post("/login", (req, res) => {
 });
 
 export default router;
+

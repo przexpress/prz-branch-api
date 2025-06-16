@@ -1,0 +1,1 @@
+body{margin:0;font-family:Arial,sans-serif;background-color:#f4f4f4}.dashboard{display:flex;height:100vh}.sidebar{width:220px;background-color:#111;color:#fff;padding:20px}.sidebar h2{margin-bottom:30px;font-size:22px;text-align:center}.sidebar ul{list-style:none;padding:0}.sidebar li{margin:15px 0;cursor:pointer}.main-content{flex-grow:1;padding:40px}

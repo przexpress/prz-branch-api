@@ -8,6 +8,8 @@ const router = express.Router();
 router.post("/login", (req, res) => {
   const { username, password } = req.body;
 
+  console.log("LOGIN ATTEMPT:", username, password);
+
   const filePath = path.join(process.cwd(), "data", "branchUsers.json");
 
   fs.readFile(filePath, "utf8", (err, data) => {
@@ -20,17 +22,21 @@ router.post("/login", (req, res) => {
     try {
       users = JSON.parse(data);
     } catch (parseError) {
+      console.error("JSON parse error:", parseError);
       return res.status(500).json({ error: "Invalid user data format." });
     }
+
+    console.log("USERS FOUND:", users);
 
     const user = users.find(
       (u) => u.username === username && u.password === password
     );
 
     if (user) {
-      res.json({ success: true, user });
+      return res.json({ success: true, user });
     } else {
-      res.status(401).json({ success: false, message: "Invalid credentials" });
+      console.log("NO MATCH FOUND for:", username, password);
+      return res.status(401).json({ success: false, message: "Invalid credentials" });
     }
   });
 });

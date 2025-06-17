@@ -1,9 +1,21 @@
- import path from "path";
+ // backend/index.js
+import express from "express";
+import cors from "cors";
+import path from "path";
+import branchAuthRoutes from './routes/branchauth.js';
 
-// Serve frontend files from /public
-app.use(express.static(path.join(process.cwd(), "public")));
+const app = express();
+const PORT = process.env.PORT || 10000;
 
-// Catch-all for frontend routes like /branch/login
-app.get("*", (req, res) => {
-  res.sendFile(path.join(process.cwd(), "public", "index.html"));
+app.use(cors());
+app.use(express.json());
+
+app.use('/api/branch', branchAuthRoutes);
+
+app.get("/", (req, res) => {
+  res.send("PRZ API is running");
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });

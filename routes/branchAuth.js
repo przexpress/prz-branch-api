@@ -4,38 +4,35 @@ import path from "path";
 
 const router = express.Router();
 
-// POST /api/branch/login
 router.post("/login", (req, res) => {
+  console.log("✅ POST /api/branch/login called");
   const { username, password } = req.body;
-
-  console.log("LOGIN ATTEMPT:", username, password);
 
   const filePath = path.join(process.cwd(), "data", "branchUsers.json");
 
   fs.readFile(filePath, "utf8", (err, data) => {
     if (err) {
-      console.error("Error reading file:", err);
-      return res.status(500).json({ error: "Failed to read user data." });
+      console.error("❌ Error reading user data:", err);
+      return res.status(500).json({ error: "Failed to read user data" });
     }
 
     let users;
     try {
       users = JSON.parse(data);
-    } catch (parseError) {
-      console.error("JSON parse error:", parseError);
-      return res.status(500).json({ error: "Invalid user data format." });
+    } catch (parseErr) {
+      console.error("❌ JSON parse error:", parseErr);
+      return res.status(500).json({ error: "Corrupted user data" });
     }
 
-    console.log("USERS FOUND:", users);
-
-    const user = users.find(
-      (u) => u.username === username && u.password === password
+    const foundUser = users.find(
+      (user) => user.username === username && user.password === password
     );
 
-    if (user) {
-      return res.json({ success: true, user });
+    if (foundUser) {
+      console.log("✅ Login successful:", foundUser.username);
+      return res.json({ success: true, user: foundUser });
     } else {
-      console.log("NO MATCH FOUND for:", username, password);
+      console.warn("⚠️ Invalid credentials");
       return res.status(401).json({ success: false, message: "Invalid credentials" });
     }
   });

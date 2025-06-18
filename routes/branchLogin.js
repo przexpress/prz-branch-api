@@ -1,14 +1,19 @@
  import express from "express";
 import fs from "fs";
 import path from "path";
+import { fileURLToPath } from "url";
 
 const router = express.Router();
 
+// ✅ Fix __dirname for ES Modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// ✅ Path to branchUsers.json
+const filePath = path.join(__dirname, "..", "public", "branchUsers.json");
+
 router.post("/login", (req, res) => {
   const { username, password } = req.body;
-
-  // ✅ FIXED PATH
-  const filePath = path.join(process.cwd(), "public", "branchUsers.json");
 
   fs.readFile(filePath, "utf8", (err, data) => {
     if (err) {
@@ -20,8 +25,8 @@ router.post("/login", (req, res) => {
     try {
       users = JSON.parse(data);
     } catch (parseErr) {
-      console.error("Invalid JSON format:", parseErr);
-      return res.status(500).json({ error: "Invalid user file format" });
+      console.error("JSON parse error:", parseErr);
+      return res.status(500).json({ error: "Invalid JSON format" });
     }
 
     const user = users.find(
@@ -31,9 +36,9 @@ router.post("/login", (req, res) => {
     );
 
     if (user) {
-      res.json({ success: true, user });
+      return res.json({ success: true, user });
     } else {
-      res.status(401).json({ success: false, message: "Invalid credentials" });
+      return res.status(401).json({ success: false, message: "Invalid credentials" });
     }
   });
 });

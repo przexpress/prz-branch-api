@@ -1,30 +1,41 @@
  import express from "express";
-import fetch from "node-fetch";
+import fs from "fs";
+import path from "path";
 
 const router = express.Router();
 
-router.post("/login", async (req, res) => {
+router.post("/login", (req, res) => {
   const { username, password } = req.body;
 
-  try {
-    const response = await fetch("https://prz-api-1.onrender.com/branchUsers.json");
-    const users = await response.json();
-
-    const user = users.find(
-      (u) =>
-        u.username.trim().toLowerCase() === username.trim().toLowerCase() &&
-        u.password.trim() === password.trim()
-    );
-
-    if (user) {
-      res.json({ success: true, user });
-    } else {
-      res.status(401).json({ success: false, message: "Invalid credentials" });
-    }
-  } catch (err) {
-    console.error("❌ Error fetching user file:", err);
-    res.status(500).json({ error: "Error reading user file" });
+  const filePath = path.resolve("public/branchUsers.json");
+  fs.readFile(filePath, "utf8", (err, data) => {
+    if (err) {
+      console.error("❌ FILE READ ERROR", err);
+      return res.status(500).json({ error: "File missing or unreadable" });
   }
+
+    try {
+      const users = JSON.parse(data);
+      const user = users.find(
+        (u) => u.username === username && u.password === password
+      );
+
+      if (user) {
+        return res.json({
+          success: true,
+          user: {
+            username: user.username,
+            branch: user.branch,
+          },
+        });
+      } else {
+        return res.status(401).json({ success: false, message: "Invalid credentials" });
+      }
+    } catch (parseErr) {
+      console.error("Error parsing JSON:", parseErr);
+      return res.status(500).json({ error: "Invalid JSON format" });
+    }
+  });
 });
 
 export default router;

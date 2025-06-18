@@ -1,30 +1,21 @@
- import express from "express";
+ // index.js
+import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
-import path from "path";
-import { fileURLToPath } from "url";
-import branchLogin from "./routes/branchLogin.js"; // ✅ CASE SENSITIVE
+import branchLoginRoutes from "./routes/branchLogin.js";
+ // ✅ this path must match your folder
 
 const app = express();
 const PORT = process.env.PORT || 10000;
 
-// ⛳ Resolve __dirname in ES module
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-// ✅ Middleware
+// Middleware
 app.use(cors());
 app.use(bodyParser.json());
 
-// ✅ Route for login
-app.use("/api/branch", branchLogin);
+// Routes
+app.use("/api/branch", branchLoginRoutes);
 
-// ✅ Optional: test route
-app.get("/", (req, res) => {
-  res.send("✅ PRZ API is running!");
-});
-
-// ✅ Start server
+// Start server
 app.listen(PORT, () => {
   console.log(`✅ Server running on port ${PORT}`);
 });
